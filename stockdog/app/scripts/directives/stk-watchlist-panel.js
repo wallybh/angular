@@ -8,7 +8,7 @@
  */
 angular.module('stockDogApp')
   // [1] Register directive and inject dependencies
-  .directive('stkWatchlistPanel', function ($location,$modal, WatchlistService) {
+  .directive('stkWatchlistPanel', function($location, $modal, $routeParams, WatchlistService) {
     return {
       templateUrl: 'views/templates/watchlist-panel.html',
       restrict: 'E',
@@ -16,6 +16,12 @@ angular.module('stockDogApp')
 
       link: function postLink($scope) {
         // [2] Initialize variables
+
+        $scope.currentList = $routeParams.listId;
+        $scope.gotoList = function(listId){
+            $location.path('watchlist/' + listId);
+
+        };
         $scope.watchlist = {};
         var addListModal = $modal({
           scope: $scope,
@@ -27,22 +33,22 @@ angular.module('stockDogApp')
         $scope.watchlists = WatchlistService.query();
 
         // [4] Display addlist modal
-        $scope.showModal = function () {
+        $scope.showModal = function() {
           addListModal.$promise.then(addListModal.show);
         };
 
         // [5] Create a new list from fields in modal
-        $scope.createList = function () {
+        $scope.createList = function() {
           WatchlistService.save($scope.watchlist);
           addListModal.hide();
           $scope.watchlist = {};
         };
 
-         // [6] Delete desired list and redirect to home
-         $scope.deleteList = function (list) {
-           WatchlistService.remove(list);
-           $location.path('/');
-         };
+        // [6] Delete desired list and redirect to home
+        $scope.deleteList = function(list) {
+          WatchlistService.remove(list);
+          $location.path('/');
+        };
 
       }
     };
