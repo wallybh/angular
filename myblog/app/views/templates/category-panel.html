@@ -1,0 +1,28 @@
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <span class="glyphicon glyphicon-eye-open"></span>
+    Categories
+    <!––[1] Invoke showModal() handler on click ––>
+    <button class="btn btn-success btn-xs pull-right" ng-click="showModal()" type="button">
+      <span class="glyphicon glyphicon-plus"></span>
+    </button>
+  </div>
+  <div class="panel-body">
+    <!–– [2] Show help text if no watchlists exist ––>
+    <div class="text-center" ng-if="!categories.length">
+      Use
+      <span class="glyphicon glyphicon-plus"></span>
+      to create a category
+    </div>
+    <div class="list-group">
+      <!–– [3] Repeat over each list in watchlists and create link ––>
+      <a class="list-group-item" ng-repeat="list in categories track by $index">
+        {{list.name}}
+        <!–– [4] Delete this list by invoking deleteList() handler ––>
+        <button class="close" ng-click="deleteList(list)" type="button">
+          &times;
+        </button>
+      </a>
+    </div>
+  </div>
+</div>
