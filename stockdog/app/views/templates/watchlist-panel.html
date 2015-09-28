@@ -2,23 +2,23 @@
   <div class="panel-heading">
     <span class="glyphicon glyphicon-eye-open"></span>
     Watchlists
-    <!––[1] Invoke showModal() handler on click ––>
+    <!--[1] Invoke showModal() handler on click -->
     <button class="btn btn-success btn-xs pull-right" ng-click="showModal()" type="button">
       <span class="glyphicon glyphicon-plus"></span>
     </button>
   </div>
   <div class="panel-body">
-    <!–– [2] Show help text if no watchlists exist ––>
+    <!-- [2] Show help text if no watchlists exist -->
     <div class="text-center" ng-if="!watchlists.length">
       Use
       <span class="glyphicon glyphicon-plus"></span>
       to create a list
     </div>
     <div class="list-group">
-      <!–– [3] Repeat over each list in watchlists and create link ––>
+      <!-- [3] Repeat over each list in watchlists and create link -->
       <a class="list-group-item" role="button" ng-class="{active: currentList == list.id}" ng-click="gotoList(list.id)" ng-repeat="list in watchlists track by $index">
         {{list.name}}
-        <!–– [4] Delete this list by invoking deleteList() handler ––>
+        <!-- [4] Delete this list by invoking deleteList() handler -->
         <button class="close" ng-click="deleteList(list)" type="button">
           &times;
         </button>
