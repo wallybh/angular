@@ -1,0 +1,23 @@
+<div class="panel panel-info">
+  <div class="panel-heading">
+    Filter my data
+    <button class="close" ng-click="deleteList(list)" type="button">
+      &times;
+    </button>
+  </div>
+  <form id="edit-user" name="edituser" role="form">
+    <div class="panel-body">
+      <div class="form-group">
+        <label for="client-id">Your customer ID</label>
+        <input class="form-control" id="client-id" ng-model="client.id" placeholder="Eg.: 911111111" required type="number">
+      </div>
+      <div class="form-group">
+        <label for="client-name">Name</label>
+        <input class="form-control" id="client-name" ng-model="client.name" placeholder="Just a nick name" type="text">
+      </div>
+    </div>
+    <div class="panel-footer">
+      <button class="btn btn-success" ng-click="createClient()" ng-disabled="!edituser.$valid" type="submit">Save</button>
+    </div>
+  </form>
+</div>

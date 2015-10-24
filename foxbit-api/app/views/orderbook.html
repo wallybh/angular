@@ -1,0 +1,53 @@
+<div ng-app="foxbitApiApp">
+  <div ng-controller="OrderbookCtrl">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Bids</h3>
+          </div>
+          <div class="panel-body">
+            <table class="table table-striped">
+              <thead>
+                <td>#</td>
+                <td>Quantity</td>
+                <td>Price</td>
+              </thead>
+              <tbody>
+                <tr ng-repeat="bid in bids">
+                  <td>{{bid.position}}</td>
+                  <td>{{bid.quantity}}</td>
+                  <td>{{bid.price}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Asks</h3>
+          </div>
+          <div class="panel-body">
+            <table class="table table-striped">
+              <thead>
+                <td>#</td>
+                <td>Quantity</td>
+                <td>Price</td>
+              </thead>
+              <tbody>
+                <tr ng-repeat="ask in asks">
+                  <td>{{ask.position}}</td>
+                  <td>{{ask.quantity}}</td>
+                  <td>{{ask.price}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
