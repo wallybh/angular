@@ -12,7 +12,7 @@ angular.module('foxbitApiApp')
 
     $http.defaults.useXDomain = true;
 
-    $http.get('http://cors.io/?u=https://api.blinktrade.com/api/v1/BRL/orderbook')
+    $http.get('https://crossorigin.me/https://api.blinktrade.com/api/v1/BRL/orderbook')
       .success(function(data, status, headers, config) {
 
         var bids = [];

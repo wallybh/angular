@@ -9,7 +9,7 @@
 angular.module('foxbitApiApp')
   .directive('clientPanel', function ($route,ClientService) {
     return {
-      templateUrl: '/views/templates/client-panel.html',
+      templateUrl: 'views/templates/client-panel.html',
       restrict: 'E',
       link: function postLink($scope) {
         $scope.client = {};
