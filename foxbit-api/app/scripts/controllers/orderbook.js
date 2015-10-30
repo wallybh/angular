@@ -8,13 +8,19 @@
  * Controller of the foxbitApiApp
  */
 angular.module('foxbitApiApp')
-  .controller('OrderbookCtrl', function($scope, $http, ClientService, $timeout) {
+  .controller('OrderbookCtrl', function($scope, $http, ClientService, $timeout,ngProgressFactory) {
+
+    $scope.progressbar = ngProgressFactory.createInstance();
 
     $scope.getData = function() {
       $http.defaults.useXDomain = true;
 
-      $http.get('https://crossorigin.me/https://api.blinktrade.com/api/v1/BRL/orderbook')
+      $scope.progressbar.start();
+
+      $http.get('https://crossorigin.me/https://api.blinktrade.com/api/v1/BRL/orderbook',{params: { 'f': new Date().getTime() }})
         .success(function(data, status, headers, config) {
+
+          $scope.progressbar.set(50);
 
           var bids = [];
           var asks = [];
@@ -28,6 +34,7 @@ angular.module('foxbitApiApp')
               bids.push(new Bid(i + 1, bid[1], bid[0], bid[2]));
             }
           }
+          $scope.progressbar.set(70);
 
           for (var j = 0; j < data.asks.length; j++) {
             var ask = data.asks[j];
@@ -36,10 +43,15 @@ angular.module('foxbitApiApp')
             }
           }
 
+          $scope.progressbar.set(90);
+
           $scope.bids = bids;
           $scope.asks = asks;
+
+          $scope.progressbar.complete();
         }).error(function(data, status, headers, config) {
           //log error
+          $scope.progressbar.complete();
         });
       //console.log('foi');
     };
@@ -48,7 +60,7 @@ angular.module('foxbitApiApp')
       $timeout(function () {
         $scope.getData();
         $scope.intervalFunction();
-      },5000)
+      },10000)
     };
 
     $scope.intervalFunction();
