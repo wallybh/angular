@@ -23,7 +23,6 @@ angular
     $routeProvider
       .when('/', {
         templateUrl: 'views/orderbook.html',
-        controller: 'OrderbookCtrl',
         controllerAs: 'orderbook'
       })
       .when('/about', {
@@ -31,11 +30,11 @@ angular
         controller: 'AboutCtrl',
         controllerAs: 'about'
       })
-      .when('/orderbook', {
-        templateUrl: 'views/orderbook.html',
-        controller: 'OrderbookCtrl',
-        controllerAs: 'orderbook'
-      })
+      // .when('/orderbook', {
+      //   templateUrl: 'views/orderbook.html',
+      //   controller: 'OrderbookCtrl',
+      //   controllerAs: 'orderbook'
+      // })
       .otherwise({
         redirectTo: '/'
       });
